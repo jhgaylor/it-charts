@@ -4,5 +4,5 @@ version: 0.0.1
 description: Parameterized postgresql.
 maintainers:
   - Jake Gaylor <jhgaylor@gmail.com>
-details:
+details: |-
   This package deploys a single instance of Postgresql to Kubernetes. For development purposes only. Will look for a values file in `helm/postgresql.toml` the directory where `helm generate` is invoked.
