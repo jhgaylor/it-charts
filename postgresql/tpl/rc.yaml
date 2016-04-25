@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: postgresql
-          image: postgresql
+          image: postgres
           ports:
             - containerPort: {{default "5432" .POSTGRES_PORT}}
           env:
