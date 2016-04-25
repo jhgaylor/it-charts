@@ -1,4 +1,4 @@
-#helm:generate helm tpl -d helm/postgresql.rc.toml -o $HELM_GENERATE_DIR/manifests/postgresql/rc.yaml $HELM_GENERATE_FILE
+#helm:generate helm tpl -d helm/postgresql.rc.toml -o $HELM_GENERATE_DIR/manifests/rc.yaml $HELM_GENERATE_DIR/tpl/rc.yaml
 kind: ReplicationController
 apiVersion: v1
 metadata:
