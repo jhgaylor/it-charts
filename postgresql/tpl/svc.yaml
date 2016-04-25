@@ -1,0 +1,20 @@
+#helm:generate helm tpl -d helm/postgresql.svc.toml -o $HELM_GENERATE_DIR/manifests/postgresql/svc.yaml $HELM_GENERATE_FILE
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgresql
+  labels:
+    name: postgresql
+    role: db
+    environment: dev
+    heritage: helm
+spec:
+  type: LoadBalancer
+  ports:
+  - port: {{default "5432" .POSTGRES_PORT}}
+    targetPort: {{default "5432" .POSTGRES_PORT}}
+    name: postgresql-db
+  selector:
+    name: postgresql
+    role: db
+    environment: dev

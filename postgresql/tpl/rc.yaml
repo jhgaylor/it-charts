@@ -1,0 +1,35 @@
+#helm:generate helm tpl -d helm/postgresql.rc.toml -o $HELM_GENERATE_DIR/manifests/postgresql/rc.yaml $HELM_GENERATE_FILE
+kind: ReplicationController
+apiVersion: v1
+metadata:
+  name: postgresql
+  labels:
+    name: postgresql
+    environment: dev
+    role: db
+    heritage: helm
+spec:
+  replicas: 1
+  selector:
+    name: postgresql
+    environment: dev
+    role: db
+  template:
+    metadata:
+      labels:
+        name: postgresql
+        environment: dev
+        role: db
+    spec:
+      containers:
+        - name: postgresql
+          image: postgresql
+          ports:
+            - containerPort: {{default "5432" .POSTGRES_PORT}}
+          env:
+            - name: POSTGRES_USER
+              value: {{default "ci" .POSTGRES_USER}}
+            - name: POSTGRES_PASSWORD
+              value: {{default "ci" .POSTGRES_PASSWORD}}
+            - name: POSTGRES_DB
+              value: {{default "concourse" .POSTGRES_DB}}
