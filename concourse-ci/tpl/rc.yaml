@@ -1,0 +1,47 @@
+#helm:generate helm tpl -o $HELM_GENERATE_DIR/manifests/rc.yaml $HELM_GENERATE_DIR/tpl/rc.yaml
+kind: ReplicationController
+apiVersion: v1
+metadata:
+  name: concourse
+  labels:
+    name: concourse
+    environment: dev
+    role: ci
+    heritage: helm
+    provider: concourse-ci
+spec:
+  replicas: 1
+  selector:
+    name: concourse
+    environment: dev
+    role: ci
+  template:
+    metadata:
+      labels:
+        name: concourse
+        environment: dev
+        role: ci
+    spec:
+      containers:
+        - name: concourse
+          image: jhgaylor/it-ci-web:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: CI_POSTGRESQL_HOSTNAME
+              value: {{env "CI_POSTGRESQL_HOSTNAME" | default "postgresql"}}
+            - name: CI_POSTGRESQL_USERNAME
+              value: {{env "CI_POSTGRESQL_USERNAME" | default "ci"}}
+            - name: CI_POSTGRESQL_PASSWORD
+              value: {{env "CI_POSTGRESQL_PASSWORD" | default "ci"}}
+            - name: CI_POSTGRESQL_PORT
+              value: {{env "CI_POSTGRESQL_PORT" | default "5432"}}
+            - name: CI_POSTGRESQL_DB
+              value: {{env "CI_POSTGRESQL_DB" | default "concourse"}}
+            # TODO: would be nice to use a public DNS entry to avoid HOSTS hack
+            - name: CI_EXTERNAL_URL
+              value: {{env "CI_EXTERNAL_URL" | default "http://it-concourse"}}
+            - name: CI_USERNAME
+              value: {{env "CI_USERNAME" | default "ci"}}
+            - name: CI_PASSWORD
+              value: {{env "CI_PASSWORD" | default "ci"}}

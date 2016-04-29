@@ -1,0 +1,19 @@
+#helm:generate helm tpl -o $HELM_GENERATE_DIR/manifests/svc.yaml $HELM_GENERATE_DIR/tpl/svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: concourse
+  labels:
+    name: concourse
+    role: ci
+    environment: dev
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8080
+    name: concourse-web
+  selector:
+    name: concourse
+    role: ci
+    environment: dev
