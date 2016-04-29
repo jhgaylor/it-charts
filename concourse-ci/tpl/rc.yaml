@@ -29,19 +29,19 @@ spec:
             - containerPort: 8080
           env:
             - name: CI_POSTGRESQL_HOSTNAME
-              value: {{env "CI_POSTGRESQL_HOSTNAME" | default "postgresql"}}
+              value: '{{env "CI_POSTGRESQL_HOSTNAME" | default "postgresql"}}'
             - name: CI_POSTGRESQL_USERNAME
-              value: {{env "CI_POSTGRESQL_USERNAME" | default "ci"}}
+              value: '{{env "CI_POSTGRESQL_USERNAME" | default "ci"}}'
             - name: CI_POSTGRESQL_PASSWORD
-              value: {{env "CI_POSTGRESQL_PASSWORD" | default "ci"}}
+              value: '{{env "CI_POSTGRESQL_PASSWORD" | default "ci"}}'
             - name: CI_POSTGRESQL_PORT
-              value: {{env "CI_POSTGRESQL_PORT" | default "5432"}}
+              value: '{{env "CI_POSTGRESQL_PORT" | default "5432"}}'
             - name: CI_POSTGRESQL_DB
-              value: {{env "CI_POSTGRESQL_DB" | default "concourse"}}
+              value: '{{env "CI_POSTGRESQL_DB" | default "concourse"}}'
             # TODO: would be nice to use a public DNS entry to avoid HOSTS hack
             - name: CI_EXTERNAL_URL
               value: '{{env "CI_EXTERNAL_URL" | default "http://it-concourse"}}'
             - name: CI_USERNAME
-              value: {{env "CI_USERNAME" | default "ci"}}
+              value: '{{env "CI_USERNAME" | default "ci"}}'
             - name: CI_PASSWORD
-              value: {{env "CI_PASSWORD" | default "ci"}}
+              value: '{{env "CI_PASSWORD" | default "ci"}}'
