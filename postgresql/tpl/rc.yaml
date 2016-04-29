@@ -23,14 +23,14 @@ spec:
         role: db
     spec:
       containers:
-        - name: postgresql
+        - name: orchardup/postgresql
           image: postgres
           ports:
             - containerPort: {{env "POSTGRES_PORT" | default "5432"}}
           env:
-            - name: POSTGRES_USER
+            - name: POSTGRESQL_USER
               value: {{env "POSTGRES_USER" | default "ci"}}
-            - name: POSTGRES_PASSWORD
+            - name: POSTGRESQL_PASS
               value: {{env "POSTGRES_PASS" | default "ci"}}
-            - name: POSTGRES_DB
+            - name: POSTGRESQL_DB
               value: {{env "POSTGRES_DB" | default "concourse"}}
