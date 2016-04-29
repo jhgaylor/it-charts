@@ -31,6 +31,6 @@ spec:
             - name: POSTGRES_USER
               value: {{env "POSTGRES_USER" | default "ci"}}
             - name: POSTGRES_PASSWORD
-              value: {{env "POSTGRES_PASSWORD" | default "ci"}}
+              value: {{env "POSTGRES_PASS" | default "ci"}}
             - name: POSTGRES_DB
               value: {{env "POSTGRES_DB" | default "concourse"}}
