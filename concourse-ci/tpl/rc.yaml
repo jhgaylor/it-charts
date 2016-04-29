@@ -40,7 +40,7 @@ spec:
               value: {{env "CI_POSTGRESQL_DB" | default "concourse"}}
             # TODO: would be nice to use a public DNS entry to avoid HOSTS hack
             - name: CI_EXTERNAL_URL
-              value: {{env "CI_EXTERNAL_URL" | default "\"http://it-concourse\""}}
+              value: '{{env "CI_EXTERNAL_URL" | default "http://it-concourse"}}'
             - name: CI_USERNAME
               value: {{env "CI_USERNAME" | default "ci"}}
             - name: CI_PASSWORD
