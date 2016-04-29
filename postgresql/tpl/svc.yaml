@@ -1,4 +1,4 @@
-#helm:generate helm tpl -d helm/postgresql.toml -o $HELM_GENERATE_DIR/manifests/svc.yaml $HELM_GENERATE_DIR/tpl/svc.yaml
+#helm:generate helm tpl -o $HELM_GENERATE_DIR/manifests/svc.yaml $HELM_GENERATE_DIR/tpl/svc.yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -11,8 +11,8 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: {{default "5432" .POSTGRES_PORT}}
-    targetPort: {{default "5432" .POSTGRES_PORT}}
+  - port: {{env "POSTGRES_PORT" | default "5432"}}
+    targetPort: {{env "POSTGRES_PORT" | default "5432"}}
     name: postgresql-db
   selector:
     name: postgresql
