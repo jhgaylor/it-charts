@@ -23,8 +23,8 @@ spec:
         role: db
     spec:
       containers:
-        - name: orchardup/postgresql
-          image: postgres
+        - name: postgresql
+          image: orchardup/postgresql
           ports:
             - containerPort: {{env "POSTGRES_PORT" | default "5432"}}
           env:
