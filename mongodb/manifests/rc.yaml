@@ -1,0 +1,28 @@
+kind: ReplicationController
+apiVersion: v1
+metadata:
+  name: mongo
+  labels:
+    name: mongo
+    environment: dev
+    role: db
+spec:
+  replicas: 1
+  selector:
+    name: mongo
+    environment: dev
+    role: db
+  template:
+    metadata:
+      labels:
+        name: mongo
+        environment: dev
+        role: db
+    spec:
+      containers:
+        - name: mongo
+          image: mongo
+          command:
+            - mongod
+          ports:
+            - containerPort: 27017
