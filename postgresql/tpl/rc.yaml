@@ -8,6 +8,7 @@ metadata:
     environment: dev
     role: db
     heritage: helm
+    provider: postgresql
 spec:
   replicas: 1
   selector:
@@ -25,11 +26,11 @@ spec:
         - name: postgresql
           image: postgres
           ports:
-            - containerPort: {{default "5432" .POSTGRES_PORT}}
+            - containerPort: {{env "POSTGRES_PORT" | default "5432"}}
           env:
             - name: POSTGRES_USER
-              value: {{default "ci" .POSTGRES_USER}}
+              value: {{env "POSTGRES_USER" | default "ci"}}
             - name: POSTGRES_PASSWORD
-              value: {{default "ci" .POSTGRES_PASSWORD}}
+              value: {{env "POSTGRES_PASSWORD" | default "ci"}}
             - name: POSTGRES_DB
-              value: {{default "concourse" .POSTGRES_DB}}
+              value: {{env "POSTGRES_DB" | default "concourse"}}
