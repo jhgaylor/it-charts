@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: concourse
-          image: jhgaylor/it-ci-web:latest
+          image: 'jhgaylor/it-ci-web:latest'
           ports:
             - containerPort: 8080
           env:
