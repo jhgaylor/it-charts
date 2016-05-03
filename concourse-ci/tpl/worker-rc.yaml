@@ -27,6 +27,8 @@ spec:
           image: 'jhgaylor/it-ci-worker:latest'
           ports:
             - containerPort: 8080
+          securityContext:
+            privileged: true
           env:
             - name: TSA_HOST
               value: '{{env "TSA_HOST" | default "concourse"}}'
