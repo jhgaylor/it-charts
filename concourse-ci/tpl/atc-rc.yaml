@@ -1,4 +1,4 @@
-#helm:generate helm tpl -o $HELM_GENERATE_DIR/manifests/rc.yaml $HELM_GENERATE_DIR/tpl/rc.yaml
+#helm:generate helm tpl -o $HELM_GENERATE_DIR/manifests/atc-rc.yaml $HELM_GENERATE_DIR/tpl/atc-rc.yaml
 kind: ReplicationController
 apiVersion: v1
 metadata:
@@ -27,6 +27,7 @@ spec:
           image: 'jhgaylor/it-ci-web:latest'
           ports:
             - containerPort: 8080
+            - containerPort: 2222
           env:
             - name: CI_POSTGRESQL_HOSTNAME
               value: '{{env "CI_POSTGRESQL_HOSTNAME" | default "postgresql"}}'

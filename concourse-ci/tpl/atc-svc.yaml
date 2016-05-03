@@ -1,4 +1,4 @@
-#helm:generate helm tpl -o $HELM_GENERATE_DIR/manifests/svc.yaml $HELM_GENERATE_DIR/tpl/svc.yaml
+#helm:generate helm tpl -o $HELM_GENERATE_DIR/manifests/atc-svc.yaml $HELM_GENERATE_DIR/tpl/atc-svc.yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -12,7 +12,10 @@ spec:
   ports:
   - port: 80
     targetPort: 8080
-    name: concourse-web
+    name: concourse-atc
+  - port: 2222
+    targetPort: 2222
+    name: concourse-tsa
   selector:
     name: concourse
     role: ci
